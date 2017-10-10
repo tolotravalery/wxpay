@@ -557,6 +557,7 @@ class WxPayApi
 		//返回结果
 		if($data){
 			curl_close($ch);
+			var_dump($data);
 			return $data;
 		} else { 
 			$error = curl_errno($ch);
