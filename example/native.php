@@ -28,8 +28,8 @@ $url1 = $notify->GetPrePayUrl("123456789");
  * 4、在支付成功通知中需要查单确认是否真正支付成功（见：notify.php）
  */
 $input = new WxPayUnifiedOrder();
-$input->SetBody("koera");
-$input->SetAttach("koera");
+$input->SetBody("test");
+$input->SetAttach("test");
 $input->SetOut_trade_no(WxPayConfig::MCHID . date("YmdHis"));
 $input->SetTotal_fee("1");
 $input->SetTime_start(date("YmdHis"));
@@ -56,7 +56,7 @@ var_dump($result);
 <!--	<br/><br/><br/>-->
 <div style="margin-left: 10px;color:#556B2F;font-size:30px;font-weight: bolder;">扫描支付模式二</div>
 <br/>
-<img alt="模式二扫码支付" src="http://paysdk.weixin.qq.com/example/qrcode.php?data=<?php echo urlencode($url2); ?>"
+<img alt="模式二扫码支付" src="http://uvbypp-mmbund-payments.com/wxpay/example/qrcode.php?data=<?php echo urlencode($url2); ?>"
      style="width:150px;height:150px;"/>
 
 </body>
