@@ -12,12 +12,6 @@ $log = Log::Init($logHandler, 15);
 
 class PayNotifyCallBack extends WxPayNotify
 {
-    private $mysqli;
-
-    public function __construct()
-    {
-        $this->mysqli = new mysqli("localhost", "trusty", "trustylabs07", "payments");
-    }
 
     //查询订单
     public function Queryorder($transaction_id)
@@ -52,11 +46,11 @@ class PayNotifyCallBack extends WxPayNotify
             $msg = "订单查询失败";
             return false;
         }
-
-        if ($stmt = $this->mysqli->prepare('INSERT INTO wechat (provider, booking_id, amount, return_code,return_message,transaction_id) VALUES (?,?,?,?,?,?)')) {
-
+        $mysqli = new mysqli("localhost", "trusty", "trustylabs07", "payments");
+        if ($stmt = $mysqli->prepare('INSERT INTO wechat(provider, booking_id, amount, return_code,return_message,transaction_id) VALUES (?,?,?,?,?,?)')) {
+            $providers = 'uv';
             /* bind parameters for markers */
-            $stmt->bind_param("uv", $notfiyOutput['attach'], $notfiyOutput['total_fee'], $notfiyOutput['return_code'], $notfiyOutput['return_msg'], $notfiyOutput['transaction_id']);
+            $stmt->bind_param("ssss", $providers, $notfiyOutput['attach'], $notfiyOutput['total_fee'], $notfiyOutput['return_code'], $notfiyOutput['return_msg'], $notfiyOutput['transaction_id']);
 
             /* execute query */
             $stmt->execute();
