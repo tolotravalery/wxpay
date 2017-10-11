@@ -10,7 +10,7 @@ require_once 'log.php';
 $logHandler = new CLogFileHandler("../logs/" . date('Y-m-d') . '.log');
 $log = Log::Init($logHandler, 15);
 
-/*class PayNotifyCallBack extends WxPayNotify
+class PayNotifyCallBack extends WxPayNotify
 {
 	//查询订单
 	public function Queryorder($transaction_id)
@@ -46,10 +46,10 @@ $log = Log::Init($logHandler, 15);
 		}
 		return true;
 	}
-}*/
+}
 
-/*Log::DEBUG("begin notify");
+Log::DEBUG("begin notify");
 $notify = new PayNotifyCallBack();
-$notify->Handle(false);*/
+$notify->Handle(false);
 
-echo $GLOBALS['HTTP_RAW_POST_DATA'];
+//echo $GLOBALS['HTTP_RAW_POST_DATA'];
