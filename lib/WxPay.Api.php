@@ -453,7 +453,7 @@ class WxPayApi
      */
     public static function replyNotify($xml)
     {
-        header('Location: ../example/test.php');
+        header('Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php');
     }
 
     /**
