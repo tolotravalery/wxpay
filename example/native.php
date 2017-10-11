@@ -29,12 +29,12 @@ $url1 = $notify->GetPrePayUrl("123456789");
  */
 $input = new WxPayUnifiedOrder();
 $input->SetBody("ULTRAVIOLET");
-$input->SetAttach("test");
+$input->SetAttach("1375");
 $input->SetOut_trade_no(WxPayConfig::MCHID . date("YmdHis"));
 $input->SetTotal_fee("1");
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
-$input->SetGoods_tag("test");
+$input->SetGoods_tag("UV");
 $input->SetNotify_url("http://uvbypp-mmbund-payments.com/wxpay/example/notify.php");
 $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");

@@ -12,6 +12,13 @@ $log = Log::Init($logHandler, 15);
 
 class PayNotifyCallBack extends WxPayNotify
 {
+    private $mysqli;
+
+    public function __construct()
+    {
+        $this->mysqli = new mysqli("localhost", "trusty", "trustylabs07", "payments");
+    }
+
     //查询订单
     public function Queryorder($transaction_id)
     {
@@ -32,8 +39,9 @@ class PayNotifyCallBack extends WxPayNotify
     //重写回调处理函数
     public function NotifyProcess($data, &$msg)
     {
-        Log::DEBUG("call back:" . json_encode($data));
-        $notfiyOutput = array();
+        $jsonData = json_encode($data);
+        Log::DEBUG("call back:" . $jsonData);
+        $notfiyOutput = json_decode($jsonData, true);
 
         if (!array_key_exists("transaction_id", $data)) {
             $msg = "输入参数不正确";
@@ -44,6 +52,18 @@ class PayNotifyCallBack extends WxPayNotify
             $msg = "订单查询失败";
             return false;
         }
+
+        if ($stmt = $this->mysqli->prepare('INSERT INTO wechat (provider, booking_id, amount, return_code,return_message,transaction_id) VALUES (?,?,?,?,?,?)')) {
+
+            /* bind parameters for markers */
+            $stmt->bind_param("uv", $notfiyOutput['attach'], $notfiyOutput['total_fee'], $notfiyOutput['return_code'], $notfiyOutput['return_msg'], $notfiyOutput['transaction_id']);
+
+            /* execute query */
+            $stmt->execute();
+
+            /* close statement */
+            $stmt->close();
+        }
         return true;
     }
 }
@@ -51,5 +71,3 @@ class PayNotifyCallBack extends WxPayNotify
 Log::DEBUG("begin notify");
 $notify = new PayNotifyCallBack();
 $notify->Handle(false);
-
-//echo $GLOBALS['HTTP_RAW_POST_DATA'];
