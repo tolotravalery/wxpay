@@ -1,5 +1,5 @@
 <?php
-ini_set('date.timezone','Asia/Shanghai');
+ini_set('date.timezone', 'Asia/Shanghai');
 error_reporting(E_ERROR);
 
 require_once "../lib/WxPay.Api.php";
@@ -7,10 +7,10 @@ require_once '../lib/WxPay.Notify.php';
 require_once 'log.php';
 
 //初始化日志
-$logHandler= new CLogFileHandler("../logs/".date('Y-m-d').'.log');
+$logHandler = new CLogFileHandler("../logs/" . date('Y-m-d') . '.log');
 $log = Log::Init($logHandler, 15);
 
-class PayNotifyCallBack extends WxPayNotify
+/*class PayNotifyCallBack extends WxPayNotify
 {
 	//查询订单
 	public function Queryorder($transaction_id)
@@ -28,13 +28,13 @@ class PayNotifyCallBack extends WxPayNotify
 		}
 		return false;
 	}
-	
+
 	//重写回调处理函数
 	public function NotifyProcess($data, &$msg)
 	{
 		Log::DEBUG("call back:" . json_encode($data));
 		$notfiyOutput = array();
-		
+
 		if(!array_key_exists("transaction_id", $data)){
 			$msg = "输入参数不正确";
 			return false;
@@ -46,8 +46,10 @@ class PayNotifyCallBack extends WxPayNotify
 		}
 		return true;
 	}
-}
+}*/
 
-Log::DEBUG("begin notify");
+/*Log::DEBUG("begin notify");
 $notify = new PayNotifyCallBack();
-$notify->Handle(false);
+$notify->Handle(false);*/
+
+echo $GLOBALS['HTTP_RAW_POST_DATA'];
