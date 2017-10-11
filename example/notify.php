@@ -47,17 +47,22 @@ class PayNotifyCallBack extends WxPayNotify
             return false;
         }
         $mysqli = new mysqli("localhost", "trusty", "trustylabs07", "payments");
-        if ($stmt = $mysqli->prepare('INSERT INTO wechat(provider, booking_id, amount, return_code,return_message,transaction_id) VALUES (?,?,?,?,?,?)')) {
-            $providers = 'uv';
-            /* bind parameters for markers */
-            $stmt->bind_param("ssss", $providers, $notfiyOutput['attach'], $notfiyOutput['total_fee'], $notfiyOutput['return_code'], $notfiyOutput['return_msg'], $notfiyOutput['transaction_id']);
 
-            /* execute query */
-            $stmt->execute();
-
-            /* close statement */
-            $stmt->close();
+        if ($mysqli->connect_error) {
+            Log::DEBUG("connection error " . $mysqli->connect_error);
         }
+
+        $stmt = $mysqli->prepare('INSERT INTO wechat(provider, booking_id, amount, return_code,return_message,transaction_id) VALUES (?,?,?,?,?,?)');
+        $providers = 'uv';
+        /* bind parameters for markers */
+        $stmt->bind_param("sidssi", $providers, $notfiyOutput['attach'], $notfiyOutput['total_fee'], $notfiyOutput['return_code'], $notfiyOutput['return_msg'], $notfiyOutput['transaction_id']);
+
+        /* execute query */
+        $stmt->execute();
+        Log::DEBUG("new record to database");
+        /* close statement */
+        $stmt->close();
+//    }
         return true;
     }
 }
