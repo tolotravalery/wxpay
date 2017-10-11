@@ -1,8 +1,4 @@
-<?php
-ini_set('date.timezone', 'Asia/Shanghai');
-
-$xml = $GLOBALS['HTTP_RAW_POST_DATA'];
-echo $xml;
-
-?>
-
+<h3>Payment succes</h3>
+<p>Congratulation!</p>
+<p>Votre payment est succès</p>
+<!--<p>Transaction id : --><?php //$_GET['transaction_id'] ?><!--</p>-->
