@@ -28,7 +28,7 @@ $url1 = $notify->GetPrePayUrl("123456789");
  * 4、在支付成功通知中需要查单确认是否真正支付成功（见：notify.php）
  */
 $input = new WxPayUnifiedOrder();
-$input->SetBody("test");
+$input->SetBody("ULTRAVIOLET");
 $input->SetAttach("test");
 $input->SetOut_trade_no(WxPayConfig::MCHID . date("YmdHis"));
 $input->SetTotal_fee("1");
@@ -40,7 +40,7 @@ $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
 $result = $notify->GetPayUrl($input);
 $url2 = $result["code_url"];
-var_dump($result);
+//var_dump($result);
 ?>
 
 <html>

@@ -78,7 +78,7 @@ class WxPayDataBase
 	public function FromXml($xml)
 	{	
 		if(!$xml){
-			throw new WxPayException("xml数据异常！");
+			throw new WxPayException("xml data exception！");
 		}
         //将XML转为array
         //禁止引用外部xml实体
