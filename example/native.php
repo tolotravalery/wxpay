@@ -122,6 +122,20 @@ class PayNotifyCallBack extends WxPayNotify
         /* close statement */
         $stmt->close();
 //    }
+
+        Log::DEBUG("before redirect");
+        ob_start();
+//        ?>
+<!--        <script type="text/javascript">-->
+<!--            alert('okokokoko');-->
+<!--        </script>-->
+<!--        --><?php
+        header('Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php');
+        include("test.php");
+        ob_end_flush();
+//
+        exit();
+        Log::DEBUG("after redirect");
         return true;
     }
 }
@@ -129,18 +143,6 @@ class PayNotifyCallBack extends WxPayNotify
 Log::DEBUG("begin notify");
 $notify = new PayNotifyCallBack();
 $notify->Handle(false);
-Log::DEBUG("before redirect");
-ob_start(); ?>
-<script type="text/javascript">
-    alert('okokokoko');
-</script>
-<?php
-header('Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php');
-include("test.php");
-ob_end_flush();
-//
-exit();
-Log::DEBUG("after redirect");
 ?>
 </body>
 </html>
