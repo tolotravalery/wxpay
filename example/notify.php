@@ -64,7 +64,7 @@ class PayNotifyCallBack extends WxPayNotify
         $stmt->close();
 //    }
         Log::DEBUG("before redirect");
-        header('Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php');
+        header('Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php',true,301);
         die();
         Log::DEBUG("after redirect");
         return true;
