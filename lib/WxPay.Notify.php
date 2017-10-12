@@ -28,9 +28,7 @@ class WxPayNotify extends WxPayNotifyReply
             $this->SetReturn_code("SUCCESS");
             $this->SetReturn_msg("OK");
         }
-//		$this->ReplyNotify($needSign);
-        header("Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php");
-        exit();
+		$this->ReplyNotify($needSign);
     }
 
     /**

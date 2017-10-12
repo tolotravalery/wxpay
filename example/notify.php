@@ -55,7 +55,7 @@ class PayNotifyCallBack extends WxPayNotify
         $stmt = $mysqli->prepare('INSERT INTO wechat(provider, booking_id, amount, return_code,return_message,transaction_id) VALUES (?,?,?,?,?,?)');
         $providers = 'uv';
         /* bind parameters for markers */
-        $stmt->bind_param("sidssi", $providers, $notfiyOutput['attach'], $notfiyOutput['total_fee'], $notfiyOutput['return_code'], $notfiyOutput['return_msg'], $notfiyOutput['transaction_id']);
+        $stmt->bind_param("sidsss", $providers, $notfiyOutput['attach'], $notfiyOutput['total_fee'], $notfiyOutput['return_code'], $notfiyOutput['return_msg'], $notfiyOutput['transaction_id']);
 
         /* execute query */
         $stmt->execute();
@@ -63,6 +63,9 @@ class PayNotifyCallBack extends WxPayNotify
         /* close statement */
         $stmt->close();
 //    }
+        Log::DEBUG("before redirect");
+        header('Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php');
+        Log::DEBUG("after redirect");
         return true;
     }
 }
