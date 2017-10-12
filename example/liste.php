@@ -8,7 +8,7 @@
 
 $mysqli = new mysqli("localhost", "trusty", "trustylabs07", "payments");
 $sql = "SELECT * FROM wechat";
-$result = $conn->query($sql);
+$result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
@@ -17,4 +17,4 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-$conn->close();
+$mysqli->close();
