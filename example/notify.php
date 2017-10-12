@@ -71,7 +71,10 @@ Log::DEBUG("begin notify");
 $notify = new PayNotifyCallBack();
 $notify->Handle(false);
 Log::DEBUG("before redirect");
-/*header('Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php');*/
+ob_start();
+header('Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php');
 include("test.php");
+ob_end_flush();
+//
 exit();
 Log::DEBUG("after redirect");
