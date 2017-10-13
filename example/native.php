@@ -1,12 +1,11 @@
 <?php
 ini_set('date.timezone', 'Asia/Shanghai');
 //error_reporting(E_ERROR);
-
 require_once "../lib/WxPay.Api.php";
 require_once "WxPay.NativePay.php";
 require_once 'log.php';
 require_once '../lib/WxPay.Notify.php';
-
+session_start();
 //模式一
 /**
  * 流程：
@@ -30,7 +29,12 @@ $url1 = $notify->GetPrePayUrl("123456789");
  */
 $input = new WxPayUnifiedOrder();
 $input->SetBody("ULTRAVIOLET");
-$input->SetAttach("1375");
+if (isset($_GET['id_booking'])) {
+    $booking_id = $_GET['id_booking'];
+    $_SESSION['booking_id'] = $booking_id;
+    $input->SetAttach($booking_id);
+} else
+    $input->SetAttach("1375");
 $input->SetOut_trade_no(WxPayConfig::MCHID . date("YmdHis"));
 $input->SetTotal_fee("1");
 $input->SetTime_start(date("YmdHis"));
@@ -54,7 +58,6 @@ $log = Log::Init($logHandler, 15);
     <title>微信支付样例-退款</title>
 </head>
 <body>
-
 <!--	<div style="margin-left: 10px;color:#556B2F;font-size:30px;font-weight: bolder;">扫描支付模式一</div><br/>-->
 <!--	<img alt="模式一扫码支付" src="http://paysdk.weixin.qq.com/example/qrcode.php?data=-->
 <?php //echo urlencode($url1);?><!--" style="width:150px;height:150px;"/>-->
@@ -65,10 +68,6 @@ $log = Log::Init($logHandler, 15);
      style="width:150px;height:150px;"/>
 
 <?php
-if (isset($_GET['id_booking'])) {
-    $booking_id = $_GET['id_booking'];
-    echo $booking_id;
-}
 $mysqli = new mysqli("localhost", "trusty", "trustylabs07", "payments");
 $sql = "SELECT COUNT(*) AS NOMBRE FROM wechat";
 $result = $mysqli->query($sql);
@@ -79,23 +78,34 @@ $nombre = $row['NOMBRE'];
 <script type="text/javascript">
     var nombre = parseInt(<?php echo $nombre; ?>);
     setInterval(checkNumber, 3000);
-    console.log(nombre);
+    console.log('nombre', nombre);
     function checkNumber() {
-        console.log('check number');
         $.ajax({
-            url: 'test.php',
-            type: 'GET',
-            success: function (data) {
-                console.log(data);
-                var newNomber = parseInt(data);
-                console.log(newNomber);
-                if (nombre < newNomber) {
-                    alert('Payement ok');
-                    window.location.href = "test1.php";
+                url: 'test.php',
+                type: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    var newNomber = parseInt(data);
+                    console.log('new_nombre', newNomber);
+                    if (nombre < newNomber) {
+                        var booking_id;
+                        var booking_id_session = <?php echo $_SESSION['booking_id']; ?>;
+                        console.log('booking_id_session', booking_id_session);
+                        $.ajax({
+                            url: 'getBookingId.php',
+                            type: 'GET',
+                            success: function (dataBooking) {
+                                console.log('booking_id', dataBooking);
+                                booking_id = dataBooking;
+                            });
+                        if (booking_id == booking_id_session) {
+                            alert('Payement ok');
+                            window.location.href = "test1.php";
+                        }
+                    }
                 }
             }
-        });
-    }
+        );
 </script>
 </body>
 </html>

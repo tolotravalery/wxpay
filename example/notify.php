@@ -59,7 +59,6 @@ class PayNotifyCallBack extends WxPayNotify
 
         /* execute query */
         $stmt->execute();
-        Log::DEBUG("new record to database");
         /* close statement */
         $stmt->close();
 //    }
@@ -70,6 +69,3 @@ class PayNotifyCallBack extends WxPayNotify
 Log::DEBUG("begin notify");
 $notify = new PayNotifyCallBack();
 $notify->Handle(false);
-Log::DEBUG("before redirect");
-Redirecting::redirect("uvbypp-mmbund-payments.com/wxpay/example/test.php");
-Log::DEBUG("after redirect");
