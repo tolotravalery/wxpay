@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -59,11 +56,11 @@ session_start();
     <div class="container">
         <div class="row information">
             <div class="col-md-6 col-xs-12">
-                <p><label>Order number :</label> <?php echo $_SESSION['booking_id'] ?></p>
+                <p><label>Order number :</label> <?php if (isset($_GET['id_booking'])) echo $_GET['id_booking']; ?></p>
             </div>
             <div class="col-md-6 col-xs-12 ">
                 <p class="text-left-xs text-left-sm text-right-md"><label>Total Price
-                        : </label> <?php echo $_SESSION['amount']; ?>
+                        : </label> <?php if (isset($_GET['amount'])) echo $_GET['amount']; ?>
                 <p>
             </div>
         </div>

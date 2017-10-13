@@ -182,11 +182,11 @@ $nombre = $row['NOMBRE'];
                                     if (success == 'SUCCESS') {
                                         console.log('redirecting suceess');
 //                                        $('#container').html($('#container').load('success.php #success'))
-                                        window.location.href = 'success.php';
+                                        window.location.href = 'success.php?id_booking=<?php echo $_SESSION['booking_id'] ?>&amount=<?php echo $_SESSION['amount'] ?>';
                                     } else {
                                         console.log('redirecting error');
 //                                        $('#container').html($('#container').load('success.php #failed'))
-                                        window.location.href = 'error.php';
+                                        window.location.href = 'error.php?id_booking=<?php echo $_SESSION['booking_id'] ?>&amount=<?php echo $_SESSION['amount'] ?>';
                                     }
                                 }
                             }
