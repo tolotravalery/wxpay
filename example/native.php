@@ -74,10 +74,10 @@ $sql = "SELECT COUNT(*) AS NOMBRE FROM wechat";
 $result = $mysqli->query($sql);
 //var_dump(mysqli_fetch_array($result));
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-echo $row['NOMBRE'];
+$nombre = $row['NOMBRE'];
 ?>
 <script type="text/javascript">
-    var nombre = <?php echo $nombre; ?> ;
+    var nombre = parseInt(<?php echo $nombre; ?>);
     setInterval(checkNumber, 3000);
 
     function checkNumber() {
