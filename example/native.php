@@ -97,12 +97,12 @@ $nombre = $row['NOMBRE'];
                             success: function (dataBooking) {
                                 console.log('booking_id', dataBooking);
                                 booking_id = dataBooking;
+                                if (booking_id==booking_id_session) {
+                                    alert('Payement ok');
+                                    window.location.href = "test1.php";
+                                }
                             }
                         });
-                        if (booking_id == booking_id_session) {
-                            alert('Payement ok');
-                            window.location.href = "test1.php";
-                        }
                     }
                 }
             }
