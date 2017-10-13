@@ -71,8 +71,10 @@ if (isset($_GET['id_booking'])) {
 }
 $mysqli = new mysqli("localhost", "trusty", "trustylabs07", "payments");
 $sql = "SELECT COUNT(*) AS NOMBRE FROM wechat";
-$nombre = $mysqli->query($sql);
-var_dump($nombre);
+$result = $mysqli->query($sql);
+var_dump(mysqli_fetch_array($result));
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+var_dump($row['NOMBRE']);
 ?>
 <script type="text/javascript">
     var nombre = <?php echo $nombre; ?> ;
