@@ -79,7 +79,7 @@ $nombre = $row['NOMBRE'];
 <script type="text/javascript">
     var nombre = parseInt(<?php echo $nombre; ?>);
     setInterval(checkNumber, 3000);
-
+    console.log(nombre);
     function checkNumber() {
         console.log('check number');
         $.ajax({
