@@ -86,6 +86,7 @@ $nombre = $row['NOMBRE'];
             url: 'test.php',
             type: 'GET',
             success: function (data) {
+                console.log(data);
                 var newNomber = parseInt(data);
                 console.log(newNomber);
                 if (nombre < newNomber) {
