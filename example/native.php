@@ -1,11 +1,11 @@
 <?php
+session_start();
 ini_set('date.timezone', 'Asia/Shanghai');
 //error_reporting(E_ERROR);
 require_once "../lib/WxPay.Api.php";
 require_once "WxPay.NativePay.php";
 require_once 'log.php';
 require_once '../lib/WxPay.Notify.php';
-session_start();
 //模式一
 /**
  * 流程：
@@ -97,7 +97,8 @@ $nombre = $row['NOMBRE'];
                             success: function (dataBooking) {
                                 console.log('booking_id', dataBooking);
                                 booking_id = dataBooking;
-                            });
+                            }
+                        });
                         if (booking_id == booking_id_session) {
                             alert('Payement ok');
                             window.location.href = "test1.php";
