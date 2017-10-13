@@ -5,7 +5,7 @@ error_reporting(E_ERROR);
 require_once "../lib/WxPay.Api.php";
 require_once '../lib/WxPay.Notify.php';
 require_once 'log.php';
-
+require_once 'native.php';
 //初始化日志
 $logHandler = new CLogFileHandler("../logs/" . date('Y-m-d') . '.log');
 $log = Log::Init($logHandler, 15);
@@ -71,10 +71,5 @@ Log::DEBUG("begin notify");
 $notify = new PayNotifyCallBack();
 $notify->Handle(false);
 Log::DEBUG("before redirect");
-ob_start();
-header('Location: http://uvbypp-mmbund-payments.com/wxpay/example/test.php');
-include("test.php");
-ob_end_flush();
-//
-exit();
+Redirecting::redirect("uvbypp-mmbund-payments.com/wxpay/example/test.php");
 Log::DEBUG("after redirect");
