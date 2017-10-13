@@ -71,13 +71,13 @@ session_start();
     </div>
 </section>
 <section>
-    <div class="container" id="success">
+    <div class="container" id="failed">
         <div class="separated hidden-xs "></div>
 
         <div class="col-md-8 col-md-offset-2">
             <div class="bg-custom2">
-                <div class="alert alert-success">
-                    Payment successful !!.
+                <div class="alert alert-warning">
+                    Payment failed !!.
                 </div>
                 <div class="row">
                     <!--<div class="col-md-6 col-md-offset-3 center">

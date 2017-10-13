@@ -165,7 +165,7 @@ $nombre = $row['NOMBRE'];
                 success: function (data) {
 //                    console.log(data);
                     var newNomber = parseInt(data);
-                    console.log('new_nombre', newNomber);
+//                    console.log('new_nombre', newNomber);
                     if (nombre < newNomber) {
                         var booking_id;
                         var booking_id_session = <?php echo $_SESSION['booking_id']; ?>;
@@ -181,10 +181,12 @@ $nombre = $row['NOMBRE'];
                                 if (booking_id == booking_id_session) {
                                     if (success == 'SUCCESS') {
                                         console.log('redirecting suceess');
-                                        $('#container').html($('#container').load('success.php #success'))
+//                                        $('#container').html($('#container').load('success.php #success'))
+                                        window.location.href = 'success.php';
                                     } else {
                                         console.log('redirecting error');
-                                        $('#container').html($('#container').load('success.php #failed'))
+//                                        $('#container').html($('#container').load('success.php #failed'))
+                                        window.location.href = 'error.php';
                                     }
                                 }
                             }
