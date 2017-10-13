@@ -107,6 +107,7 @@ $nombre = $row['NOMBRE'];
                 }
             }
         );
+    }
 </script>
 </body>
 </html>
