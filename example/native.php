@@ -36,8 +36,10 @@ if (isset($_GET['id_booking'])) {
 } else
     $input->SetAttach("1375");
 if (isset($_GET['amount'])) {
-    $input->SetTotal_fee($_GET['amount']);
-    $_SESSION['amount'] = $_GET['amount'];
+    $amount = intval($_GET['amount']);
+    $amount_vrai = 100 * $amount;
+    $input->SetTotal_fee($amount_vrai);
+    $_SESSION['amount'] = $amount_vrai;
 } else
     $input->SetTotal_fee("1");
 $input->SetOut_trade_no(WxPayConfig::MCHID . date("YmdHis"));
