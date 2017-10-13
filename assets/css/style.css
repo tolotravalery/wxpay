@@ -1,0 +1,172 @@
+.container {
+    padding-right: 75px  !important;
+padding-left: 75px  !important;
+}
+
+.navbar {
+  position: relative;
+min-height: 75px !important;
+padding-top: 0px;
+    margin-bottom: 10px !important;
+}
+.navbar-brand > img {
+    display: block;
+width:65px ! important;
+}
+.navbar-nav > li > a {
+    padding-top: 50px !important;
+	padding-bottom: 0 !important;
+line-height: 0 !important;
+
+}
+
+.navbar-toggle {
+    margin-top: 45px !important;
+}
+
+.text-left-xs { 
+    text-align: left; 
+}
+.text-right-md { 
+    text-align: right;
+}
+
+.navbar-default {
+    background-color: #fff !important;
+    border-color: #fff !important;
+}
+
+.information{
+    margin-top: 30px;
+}
+
+.separate{
+width: 90%;
+margin-bottom:40px;
+}
+.bg-custom{
+	box-shadow: 3px 0px 10px #989898;
+	padding: 30px 10px 30px 10px;
+}
+.bg-custom2{
+	box-shadow: 3px 0px 10px #989898;
+padding: 30px 50px 30px 50px;
+	margin-top: 30px;
+}
+
+
+.img-thumbnail {
+
+    border: 1px solid #fff  !important;
+   
+}
+.communicate{
+	margin-top: 20px;
+}
+.qrcod{
+margin-top: 30px;
+}
+.divider{
+	margin-top:40px;
+}
+.separate2{
+height:100px;	
+}
+.center{
+	text-align:center;
+}
+
+footer {
+    position:relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+/* text right lg md sm xs */
+/* Style pour tablette */
+@media (max-width: 768px) {
+	.container {
+    padding-right: 20px  !important;
+padding-left: 20px  !important;
+}
+    .text-left-sm, 
+    .text-left-xs {
+		
+        text-align: left; 
+    }
+    .text-center-sm, 
+    .text-center-xs { 
+        text-align: center; 
+    }
+    .text-right-sm, 
+    .text-right-xs	{ 
+
+        text-align: right; 
+    }
+    .text-justify-sm, 
+    .text-justify-xs { 
+        text-align: justify; 
+    }
+}
+/* Style pour desktop */
+@media (min-width: 992px) {
+      .text-left-md, 
+      .text-left-sm, 
+      .text-left-xs { 
+          text-align: left; 
+      }
+      .text-center-md, 
+      .text-center-sm, 
+      .text-center-xs { 
+          text-align: center; 
+      }
+    .text-right-md, 
+    .text-right-sm, 
+    .text-right-xs { 
+        text-align: right;
+    }
+    .text-justify-md, 
+    .text-justify-sm, 
+    .text-justify-xs { 
+        text-align: justify;
+    }
+}
+/* Style pour grand desktop */
+@media (min-width: 1200px) {
+    .text-left-lg, 
+    .text-left-md, 
+    .text-left-sm, 
+    .text-left-xs {
+        text-align: left;
+    }
+    .text-center-lg, 
+    .text-center-md, 
+    .text-center-sm, 
+    .text-center-xs {
+        text-align: center;
+    }
+    .text-right-lg, 
+    .text-right-md, 
+    .text-right-sm, 
+    .text-right-xs {
+        text-align: right;
+    }
+    .text-justify-lg, 
+    .text-justify-md, 
+    .text-justify-sm, 
+    .text-justify-xs {
+        text-align: justify;
+    }
+/* } */
+
+.code{
+	text-align:center;
+	max-width: 50%;
+
+}
+ .qr{
+	text-align:center;
+		max-width: 50%;
+	
+}
