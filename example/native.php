@@ -115,7 +115,7 @@ $log = Log::Init($logHandler, 15);
     </div>
 </section>
 <section>
-    <div class="container">
+    <div class="container" id="container">
         <div class="bg-custom">
             <div class="row">
                 <div class="col-md-6 col-xs-12 text-center-md text-center-xs">
@@ -156,29 +156,36 @@ $nombre = $row['NOMBRE'];
 ?>
 <script type="text/javascript">
     var nombre = parseInt(<?php echo $nombre; ?>);
-    setInterval(checkNumber, 3000);
+    setInterval(checkNumber, 1000);
     console.log('nombre', nombre);
     function checkNumber() {
         $.ajax({
                 url: 'test.php',
                 type: 'GET',
                 success: function (data) {
-                    console.log(data);
+//                    console.log(data);
                     var newNomber = parseInt(data);
                     console.log('new_nombre', newNomber);
                     if (nombre < newNomber) {
                         var booking_id;
                         var booking_id_session = <?php echo $_SESSION['booking_id']; ?>;
-                        console.log('booking_id_session', booking_id_session);
+                        var success;
+//                        console.log('booking_id_session', booking_id_session);
                         $.ajax({
                             url: 'getBookingId.php',
                             type: 'GET',
                             success: function (dataBooking) {
-                                console.log('booking_id', dataBooking);
-                                booking_id = dataBooking;
+//                                console.log('booking_id', dataBooking);
+                                booking_id = dataBooking.split('|')[0];
+                                success = dataBooking.split('|')[1];
                                 if (booking_id == booking_id_session) {
-//                                    alert('Payement ok');
-                                    window.location.href = "success.php";
+                                    if (success == 'SUCCESS') {
+                                        console.log('redirecting suceess');
+                                        $('#container').html($('#container').load('success.php #success'))
+                                    } else {
+                                        console.log('redirecting error');
+                                        $('#container').html($('#container').load('success.php #failed'))
+                                    }
                                 }
                             }
                         });
