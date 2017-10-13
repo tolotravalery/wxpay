@@ -91,6 +91,7 @@ $nombre = $row['NOMBRE'];
                 console.log(newNomber);
                 if (nombre < newNomber) {
                     alert('Payement ok');
+                    window.location.href = "test1.php";
                 }
             }
         });
