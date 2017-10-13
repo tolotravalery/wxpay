@@ -50,6 +50,7 @@ $log = Log::Init($logHandler, 15);
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>微信支付样例-退款</title>
 </head>
 <body>
@@ -68,17 +69,28 @@ if (isset($_GET['id_booking'])) {
     $booking_id = $_GET['id_booking'];
     echo $booking_id;
 }
-
-Class Redirecting
-{
-    public static function redirect($url)
-    {
-        header('Location: ' . $url);
-        die("redirecting...");
-    }
-
-}
-
+$mysqli = new mysqli("localhost", "trusty", "trustylabs07", "payments");
+$sql = "SELECT COUNT(*) AS NOMBRE FROM wechat";
+$nombre = $mysqli->query($sql);
 ?>
+<script>
+    var nombre = <?php echo $nombre; ?> ;
+    setInterval(checkNumber, 3000);
+
+    function checkNumber() {
+        console.log('check number');
+        $.ajax({
+            url: 'test.php',
+            type: 'GET',
+            success: function (data) {
+                var newNomber = parseInt(data);
+                console.log(newNomber);
+                if (nombre < newNomber) {
+                    alert('Payement ok');
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
