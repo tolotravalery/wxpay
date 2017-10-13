@@ -88,7 +88,7 @@
 <script type="text/javascript">
     setTimeout(redirect, 5000);
     function redirect() {
-        window.location.href = 'http://uvbypp.cc/bookings';
+        window.location.href = 'http://uvbypp.cc/bookings/wechat?code=success';
     }
 </script>
 </body>
